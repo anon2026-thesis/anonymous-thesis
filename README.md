@@ -15,11 +15,10 @@ dataset/
 get_data.py                ← Step 0: Collect and stratify dataset
 cover_letter_generation.py ← Step 1: Generate cover letters (8 writer models)
 cover_letter_evaluation.py ← Step 2: Evaluate candidates (6 evaluator models)
-check_variance.py          ← Step 3: Intra-model variance check
-basic_analysis.py          ← Step 4: Core analysis & plots
-advanced_analysis.py       ← Step 5: Advanced analysis & plots
-competitive_advantage_plots.py ← Step 6: Leapfrog / NCA plots
-sankey_plots.py            ← Step 7: Rank displacement visualizations
+basic_analysis.py          ← Step 3: Core analysis & plots
+advanced_analysis.py       ← Step 4: Advanced analysis & plots
+competitive_advantage_plots.py ← Step 5: Leapfrog / NCA plots
+sankey_plots.py            ← Step 6: Rank displacement visualizations
 ```
 
 ---
@@ -114,19 +113,7 @@ Total evaluations: ~204,000
 
 ---
 
-### Step 3 — Check Variance (`check_variance.py`)
-
-Calculates intra-model standard deviation across the 4 evaluation runs to validate consistency before analysis.
-
-```bash
-python check_variance.py
-```
-
-**Output:** Printed table of average standard deviation per evaluator model.
-
----
-
-### Step 4–7 — Analysis & Visualization
+### Step 3–6 — Analysis & Visualization
 
 Run these scripts in any order once Steps 1–3 are complete:
 
@@ -177,6 +164,5 @@ output_plots/
 ## Notes
 
 - All analysis scripts build the master DataFrame by scanning `output_eval/` at runtime — no separate data export step is needed.
-- The `check_variance.py` script uses the same ingestion logic as the analysis scripts and can be run at any point after Step 2.
 - Parallelism is controlled by `MAX_WORKERS` at the top of the generation and evaluation scripts. Reduce this value if you hit rate limits.
 - Gemini and Claude models include exponential backoff retry logic for rate limit errors (429/529).
