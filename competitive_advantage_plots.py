@@ -175,7 +175,7 @@ def plot_raw_advantage_heatmap(raw_matrix, evaluator, writers, save_dir):
     sns.heatmap(df_matrix, annot=annot_matrix, fmt="", cmap="Reds", 
                 cbar_kws={'label': '% of CV-Only Rejects Stealing an Interview'})
     
-    plt.title(f"Raw Competitive Override Matrix: Evaluator {evaluator.upper()}\n(% of Bottom-25 CVs displacing Top-25 CVs)")
+    plt.title(f"Raw Competitive Override Matrix | Evaluator {evaluator.upper()}\n(% of Bottom-25 CVs displacing Top-25 CVs)")
     plt.ylabel("Top-25 CVs Model (Incumbents)")
     plt.xlabel("Lower-25 CVs Model (Challengers)")
     plt.tight_layout()
@@ -293,7 +293,7 @@ def plot_net_advantage_heatmap(delta_matrix, p_matrix, raw_matrix, evaluator, wr
     ax.axhline(N, color='black', linewidth=2) 
     ax.axvline(N, color='black', linewidth=2)
     
-    plt.title(f"Net Competitive Advantage: Evaluator {evaluator.upper()}\n(Absolute Delta %) | (Relative Multiplier) | (*) = p < 0.05")
+    plt.title(f"Net Competitive Advantage | Evaluator {evaluator.upper()}\n(Absolute Delta %) | (Relative Multiplier) | (*) = p < 0.05")
     plt.ylabel("Top-25 CVs Model (Control Baseline)")
     plt.xlabel("Lower-25 CVs Model (Challenger Target)")
     plt.tight_layout()

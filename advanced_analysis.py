@@ -176,7 +176,7 @@ def plot_cv_only_agreement(df, title_prefix, tier_name, save_dir):
 
     plt.figure(figsize=(8, 6))
     sns.heatmap(corr, annot=True, cmap="RdBu_r", vmin=-1, vmax=1, fmt=".2f")
-    plt.title(f"Baseline Agreement (Raw CV Quality)\n{title_prefix} [{tier_name}]")
+    plt.title(f"Baseline Agreement (Raw CV Quality) | {title_prefix}\nCV Only | [{tier_name}]")
     plt.tight_layout()
     plt.savefig(os.path.join(save_dir, f"agreement_corr_cv_only.png"))
     plt.close()
@@ -204,7 +204,7 @@ def plot_cv_only_rank_difference(df, title_prefix, tier_name, save_dir):
     sns.heatmap(diff_matrix, annot=True, cmap="Reds", fmt=".1f", vmin=0, vmax=6,
                 cbar_kws={'label': 'Avg Disagreement (Spots out of 50 Candidates)'})
     
-    plt.title(f"Baseline Disagreement (Average Rank Difference)\n{title_prefix} [{tier_name}]\n(Lower = Higher Agreement)")
+    plt.title(f"Baseline Disagreement (Average Rank Difference) | {title_prefix}\nCV Only | [{tier_name}]\n(Lower = Higher Agreement)")
     plt.tight_layout()
     plt.savefig(os.path.join(save_dir, f"agreement_rank_diff_cv_only.png"))
     plt.close()
@@ -240,7 +240,7 @@ def plot_cover_letter_lift(df, title_prefix, tier_name, save_dir):
     avg_lift.plot(kind='bar', yerr=std_lift, capsize=4, color=colors, edgecolor='black', alpha=0.8)
     
     plt.axhline(0, color='black', linewidth=1)
-    plt.title(f"Cover Letter Lift (Impact of adding the AI Cover Letter)\n{title_prefix} [{tier_name}]")
+    plt.title(f"Cover Letter Lift | {title_prefix}\nCV + CL Combined | [{tier_name}]")
     plt.ylabel("Score Delta (CV+CL Score - CV Only Score)")
     plt.xlabel("Writer Model")
     plt.grid(axis='y', linestyle='--', alpha=0.5)
@@ -265,7 +265,7 @@ def plot_inter_annotator_agreement(df, title_prefix, tier_name, save_dir):
 
         plt.figure(figsize=(8, 6))
         sns.heatmap(corr_style, annot=True, cmap="RdBu_r", vmin=-1, vmax=1, fmt=".2f")
-        plt.title(f"Stylistic Agreement (Ranking Writers per Candidate)\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Stylistic Agreement (Ranking Writers per Candidate) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"agreement_corr_STYLE_{etype}.png"))
         plt.close()
@@ -278,7 +278,7 @@ def plot_inter_annotator_agreement(df, title_prefix, tier_name, save_dir):
 
         plt.figure(figsize=(8, 6))
         sns.heatmap(corr_merit, annot=True, cmap="RdBu_r", vmin=-1, vmax=1, fmt=".2f")
-        plt.title(f"Merit Agreement (Ranking Candidates 1-50)\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Merit Agreement (Ranking Candidates 1-50) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"agreement_corr_MERIT_{etype}.png"))
         plt.close()
@@ -309,7 +309,7 @@ def plot_inter_annotator_rank_difference(df, title_prefix, tier_name, save_dir):
         plt.figure(figsize=(8, 6))
         sns.heatmap(diff_style, annot=True, cmap="Reds", fmt=".1f", vmin=0, vmax=2,
                     cbar_kws={'label': 'Avg Disagreement (Spots out of ~8 Writers)'})
-        plt.title(f"Stylistic Disagreement (Average Rank Difference)\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}\n(Lower = Higher Agreement)")
+        plt.title(f"Stylistic Disagreement (Average Rank Difference) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]\n(Lower = Higher Agreement)")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"agreement_rank_diff_STYLE_{etype}.png"))
         plt.close()
@@ -329,7 +329,7 @@ def plot_inter_annotator_rank_difference(df, title_prefix, tier_name, save_dir):
         plt.figure(figsize=(8, 6))
         sns.heatmap(diff_merit, annot=True, cmap="Reds", fmt=".1f", vmin=0, vmax=6,
                     cbar_kws={'label': 'Avg Disagreement (Spots out of 50 Candidates)'})
-        plt.title(f"Merit Disagreement (Average Rank Difference)\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}\n(Lower = Higher Agreement)")
+        plt.title(f"Merit Disagreement (Average Rank Difference) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]\n(Lower = Higher Agreement)")
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"agreement_rank_diff_MERIT_{etype}.png"))
         plt.close()
@@ -361,7 +361,7 @@ def plot_score_distributions(df, title_prefix, tier_name, save_dir):
         sns.lineplot(data=avg_counts, x='Score', y='Count', color='black', 
                      linewidth=3, marker='o', markersize=8, ax=ax)
         
-        plt.title(f"Evaluator Score Distribution\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Evaluator Score Distribution | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.xlabel("Given Score")
         plt.ylabel("Frequency")
         plt.xticks(range(0, 11)) 
@@ -412,7 +412,7 @@ def plot_head_to_head_matrix(df, title_prefix, tier_name, save_dir):
         df_win = pd.DataFrame(win_rate_pct, index=writers, columns=writers)
         plt.figure(figsize=(10, 8))
         sns.heatmap(df_win, annot=True, fmt=".0f", cmap="RdYlGn", vmin=0, vmax=100, center=50, cbar_kws={'label': 'Win Rate %'}, linewidths=0.5, linecolor='gray')
-        plt.title(f"RAW Head-to-Head Win Rate (Includes Self-Preference)\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Head-to-Head Win Rate (Raw) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.xlabel("Opponent")
         plt.ylabel("Winner")
         plt.tight_layout()
@@ -456,7 +456,7 @@ def plot_head_to_head_matrix_unbiased(df, title_prefix, tier_name, save_dir):
         df_win = pd.DataFrame(win_rate_pct, index=writers, columns=writers)
         plt.figure(figsize=(10, 8))
         sns.heatmap(df_win, annot=True, fmt=".0f", cmap="RdYlGn", vmin=0, vmax=100, center=50, cbar_kws={'label': 'Win Rate %'}, linewidths=0.5, linecolor='gray')
-        plt.title(f"UNBIASED Head-to-Head Win Rate\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Head-to-Head Win Rate (Unbiased) | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.xlabel("Opponent")
         plt.ylabel("Winner")
         plt.tight_layout()
@@ -493,7 +493,7 @@ def plot_controversy_index(df, title_prefix, tier_name, save_dir):
         axes[1].set_ylabel("Avg Absolute Deviation from Consensus")
         axes[1].set_xlabel("Evaluator Model")
 
-        plt.suptitle(f"Controversy & Consensus Analysis\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}", fontsize=14, y=1.05)
+        plt.suptitle(f"Controversy & Consensus Analysis | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]", fontsize=14, y=1.05)
         plt.tight_layout()
         plt.savefig(os.path.join(save_dir, f"controversy_index_{etype}.png"), bbox_inches="tight")
         plt.close()
@@ -515,7 +515,7 @@ def plot_strictness_evolution(df, title_prefix, tier_name, save_dir):
             rolling_scores = per_rank_scores.rolling(window=3, min_periods=1).mean()
             plt.plot(rolling_scores.index, rolling_scores.values, label=eval_name, linewidth=2)
 
-        plt.title(f"Strictness Evolution over CV Rank\n{title_prefix} [{tier_name}] | {TITLE_MAP[etype]}")
+        plt.title(f"Strictness Evolution over CV Rank | {title_prefix}\n{TITLE_MAP[etype]} | [{tier_name}]")
         plt.xlabel("CV Rank")
         plt.ylabel("Average Score Given")
         plt.ylim(0, 10)
@@ -548,7 +548,7 @@ def plot_context_impact_gap(df, title_prefix, tier_name, save_dir):
     avg_gap.plot(kind='bar', yerr=std_gap, capsize=4, color=colors, edgecolor='black', alpha=0.8)
     
     plt.axhline(0, color='black', linewidth=1)
-    plt.title(f"Context Impact Gap (Full Package - Letter Only)\n{title_prefix} [{tier_name}]")
+    plt.title(f"Context Impact Gap | {title_prefix}\nCV + CL Combined vs. CL Only | [{tier_name}]")
     plt.ylabel("Score Delta (CV+CL - CL)")
     plt.xlabel("Writer Model")
     plt.grid(axis='y', linestyle='--', alpha=0.5)

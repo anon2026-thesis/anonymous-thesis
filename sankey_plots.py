@@ -173,7 +173,7 @@ def plot_single_job_consensus_sankey(df, evaluator_name, writer_name, job_id, sa
     
     clean_title = get_clean_job_title(job_id)
     fig.update_layout(
-        title_text=f"Candidate Tier Movement: {clean_title}<br>evaluator: {evaluator_name.lower()} | writer: {writer_name.lower()}",
+        title_text=f"Candidate Tier Movement | {clean_title}<br>Evaluator: {evaluator_name} | Writer: {writer_name}",
         font_size=12, width=1000, height=800, margin=dict(t=100, l=150, r=150, b=50)
     )
     
@@ -250,7 +250,7 @@ def plot_competitive_leapfrog_sankey(df, evaluator_name, writer_top, writer_low,
     
     clean_title = get_clean_job_title(job_id)
     fig.update_layout(
-        title_text=f"Competitive Leapfrog: {clean_title}<br>evaluator: {evaluator_name.lower()}<br>top 25: {writer_top.lower()} | lower 25: {writer_low.lower()}",
+        title_text=f"Competitive Leapfrog | {clean_title}<br>Evaluator: {evaluator_name} | Top 25: {writer_top} | Lower 25: {writer_low}",
         width=1000, height=800, margin=dict(t=120, l=150, r=150, b=50)
     )
     
@@ -326,7 +326,7 @@ def plot_overall_average_sankey(df, job_id, save_dir):
     
     clean_title = get_clean_job_title(job_id)
     fig.update_layout(
-        title_text=f"Global Average Candidate Movement: {clean_title}<br>all evaluators & all writers aggregated",
+        title_text=f"Global Average Candidate Movement | {clean_title}<br>All Evaluators & All Writers Aggregated",
         font_size=12, width=1000, height=800, margin=dict(t=100, l=150, r=150, b=50)
     )
     

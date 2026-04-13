@@ -225,7 +225,7 @@ def plot_aggregated_summary(job_data, job_id, job_title, tier_name, tier_range, 
         
         # Updated Title
         clean_etype = TITLE_MAP.get(etype, etype)
-        plt.title(f"Average Scores: {job_title}\n{clean_etype} {title_suffix} | [{tier_name}]")
+        plt.title(f"Average Scores | {job_title}\n{clean_etype} | [{tier_name}]")
         plt.ylim(0, 11)
         plt.grid(axis='y', linestyle='--', alpha=0.5)
         plt.tight_layout()
@@ -335,7 +335,7 @@ def plot_aggregated_heatmaps(job_data, job_id, job_title, tier_name, tier_range,
         
         # Updated Title
         clean_etype = TITLE_MAP.get(etype, etype)
-        plt.title(f"Relative Preference (Gap) | {job_title}\n{clean_etype} | [{tier_name}]\n(*) = p < 0.05")
+        plt.title(f"Relative Preference Gap | {job_title}\n{clean_etype} | [{tier_name}]\n(*) = p < 0.05")
         
         plt.xlabel("Writer Model")
         plt.ylabel("Evaluator Model")
@@ -383,7 +383,7 @@ def plot_cl_impact_analysis(job_data, job_id, job_title, tier_name, tier_range, 
 
     plt.xlabel('Evaluator_Writer Pair')
     plt.ylabel(f'Average Score')
-    plt.title(f'Impact of Cover Letter: {job_title} | [{tier_name}]')
+    plt.title(f'Cover Letter Impact | {job_title}\nCV Only vs. CV + CL | [{tier_name}]')
     plt.xticks(x, pairs, rotation=90) 
     plt.ylim(0, 11)
     plt.legend()
@@ -435,7 +435,7 @@ def plot_multi_evaluator_gap_analysis(job_data, job_id, job_title, tier_name, ti
             
             # Updated Title
             clean_etype = TITLE_MAP.get(etype, etype)
-            plt.title(f'Evaluator Gap [{clean_etype}]: {job_title} | [{tier_name}]\n(Positive = {reference_evaluator.upper()} is more generous)')
+            plt.title(f'Evaluator Gap | {job_title}\n{clean_etype} | [{tier_name}]\n(Positive = {reference_evaluator.upper()} is more generous)')
             
             plt.xticks(x, RAW_WRITERS)
             plt.ylim(-4, 4)
@@ -543,7 +543,7 @@ def plot_global_job_bias_heatmap(all_jobs_data, target_etype, tier_name, tier_ra
 
     # Updated Title
     clean_etype = TITLE_MAP.get(etype, etype)
-    plt.title(f"Self-Preference Bias by Job | [{tier_name}]\n({clean_etype})\n(*) = p < 0.05")
+    plt.title(f"Self-Preference Bias by Job | All Jobs Combined\n{clean_etype} | [{tier_name}]\n(*) = p < 0.05")
     
     plt.xlabel("Evaluator Model")
     plt.ylabel("Job")
